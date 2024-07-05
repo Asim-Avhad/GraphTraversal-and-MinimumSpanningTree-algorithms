@@ -7,7 +7,7 @@ class Graph:
 
     def add_edge(self, u, v, w):
         self.adj[u].append((v, w))
-    
+
     def shortestPath(self, src):
         pq = []
         heapq.heappush(pq, (0, src))
@@ -20,19 +20,19 @@ class Graph:
                 if dist[v] > dist[u] + weight:
                     dist[v] = dist[u] + weight
                     heapq.heappush(pq, (dist[v], v))
-            
-        print("\nsrc -> node \t shortest distance\n")
+
+        print("\nsrc -> node \t shortest distance")
         for i in range(self.V):
             print(f"{src} -> {i} \t\t\t {dist[i]}")
-
+        
 if __name__ == "__main__":
     V = int(input("Enter the number of vertices: "))
     g = Graph(V)
 
     E = int(input("Enter the number of edges: "))
     for i in range(E):
-        u,v,w = map(int, input("Enter the edge (u,v) and its weight w: ").split())
-        g.add_edge(u,v,w)
+        u, v, w = map(int, input("Enter the edge (u, v) and it's weight w: ").split())
+        g.add_edge(u, v, w)
     
     src = int(input("Enter the source vertex: "))
-    g.shortestPath(src)
+    g.shortestPath(src)      

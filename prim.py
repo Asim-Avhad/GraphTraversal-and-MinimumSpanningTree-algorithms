@@ -4,7 +4,7 @@ def prim(graph, start_node):
     mst = set([start_node])
     edges = [
         (cost, start_node, to)
-        for to ,cost in graph[start_node].items()
+        for to, cost in graph[start_node].items()
         if to != start_node
     ]
     heapq.heapify(edges)
@@ -15,13 +15,13 @@ def prim(graph, start_node):
         cost, frm, to = heapq.heappop(edges)
         if to not in mst:
             mst.add(to)
-            total_cost += cost 
+            total_cost += cost
             print(f"Edge: {frm} -> {to}, Cost: {cost}")
             for to_next, cost2 in graph[to].items():
                 if to_next not in mst and to != start_node:
                     heapq.heappush(edges, (cost2, to, to_next))
-
-    print(f"\nOverall MST Cost: {total_cost}")
+                    
+    print(f"Overall MST Cost: {total_cost}")
 
 num_nodes = int(input("Enter the number of nodes: "))
 graph = {}
@@ -34,7 +34,7 @@ for i in range(num_nodes):
         cost = int(input(f"Enter the cost of edge between node {node} and neighbour {neighbour}: "))
         graph[node][neighbour] = cost
 
-start_node = input("Enter the start node: ")
+start_node = input("Enter the starting node: ")
 
-print("\nMinimum Spanning Tree edges:")
+print("\nMinimum Spanning Tree Edges: ")
 prim(graph, start_node)

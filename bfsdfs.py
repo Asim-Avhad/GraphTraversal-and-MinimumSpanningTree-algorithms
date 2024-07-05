@@ -11,14 +11,14 @@ class Graph:
             self.graph[v] = [u]
         else:
             self.graph[v].append(u)
-
+        
     def DFS(self, v, visited):
         visited.add(v)
-        print(v, end=' ')
+        print(v, end=" ")
         for neighbour in self.graph[v]:
             if neighbour not in visited:
                 self.DFS(neighbour, visited)
-
+    
     def BFS(self, s):
         visited = set()
         queue = [s]
@@ -31,19 +31,17 @@ class Graph:
                     queue.append(neighbour)
                     visited.add(neighbour)
 
-
 g = Graph()
-
 num_edges = int(input("Enter the number of edges: "))
-print("Now enter the edges (u v):")
-for _ in range(num_edges):
+print("Now enter the edges (u, v): ")
+for i in range(num_edges):
     u, v = map(int, input().split())
     g.add_edge(u, v)
 
-print("Depth First Traversal (enter the starting vertex):")
+print("DFS, Enter the starting vertex: ")
 start_vertex = int(input())
 g.DFS(start_vertex, set())
 
-print("\nBreadth First Traversal (enter the starting vertex):")
+print("\nBFS, Enter the starting vertex: ")
 start_vertex = int(input())
 g.BFS(start_vertex)
